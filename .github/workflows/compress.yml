@@ -13,4 +13,5 @@ jobs:
     - run: npm install
     - run: npm i gzipper -g
     - run: gzipper compress --include htm,html,css,js,svg,xml,map,json --zopfli --brotli --remove-larger --skip-compressed .
+    - uses: stefanzweifel/git-auto-commit-action@v4
           
