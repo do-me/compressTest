@@ -6,12 +6,12 @@ jobs:
     name: Brotli
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - name: Compress Files
+      uses: stefh/ghaction-CompressFiles@v1
       with:
-        node-version: '14'
-    - run: npm install
-    - run: npm i gzipper -g
-    - run: gzipper compress --include htm,html,css,js,svg,xml,map,json --zopfli --brotli --remove-larger --skip-compressed .
+        path: ./wordpress
+        depth: 5
+        extensions: '.css,.html,.js,.map,.ttf,.otf,.eot,.svg,.woff,.woff2,.xml,.txt,.md'
+        tools: 'brotli,gzip'
     - uses: stefanzweifel/git-auto-commit-action@v4
           
