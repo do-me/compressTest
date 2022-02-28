@@ -6,14 +6,11 @@ jobs:
     name: Brotli
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Compress assets
-        uses: Timmy/brotli-action@v1
-        with:
-          args: '-Z *.html *.css *.js'
-      - name: Upload assets
-        uses: actions/upload-artifact@v1
-        with:
-          name: assets
-          path: .
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - run: npm install
+    - run: npm i gzipper -g
+    - run: gzipper compress --include htm,html,css,js,svg,xml,map,json --zopfli --brotli --remove-larger --skip-compressed .
+          
